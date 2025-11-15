@@ -1,0 +1,58 @@
+
+	Scripts
+(2025-11-15 11:48:33)
+
+Link the project so ~/programs/modCore/ can run the IDE
+$ ln -s /home/jadeb/workspace/Verilog/jalbFpga/jalbFpga /home/jadeb/programs/modCore/lay/veri
+
+
+	Notes
+(2025-11-15 11:48:38)
+This file belongs in /doc/
+
+This project is part 2 of 3 of my Simon game.
+<a href="../../../archive/education/SBU/2025_fall/EEO_440/myProjects/FPGA_CPU/FPGA_Project.html">SBU FPGA Project</a>
+/home/jadeb/archive/education/SBU/2025_fall/EEO_440/myProjects/FPGA_CPU/FPGA_Project.html
+
+2: all features necessary for the FPGA Dev Board, aka to mimic TinyFPGA.
+USB SPI
+logic for the 6 pin header
+communication with Flash mem
+
+
+
+in regard to the USB SPI, how do i want to handle it?
+
+
+	directories
+/build/	- build output
+/scripts/	- build scripts
+/sim/	- verilog test bench files
+/src/	- verilog files
+  /soc/	- System on a Chip (Part 1, CPU Core)
+  /devBoard/ ???
+
+/jalbFpgs
+the IDE Layout file for jalbModCore.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
