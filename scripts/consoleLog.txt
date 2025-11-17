@@ -1,0 +1,7 @@
+%Error: ../sim/soc/picorv32_tb.v:21:2: syntax error, unexpected wire, expecting ',' or ';'
+   21 |  wire [31:0] mem_addr;
+      |  ^~~~
+%Error: ../sim/soc/picorv32_tb.v:51:2: syntax error, unexpected end, expecting ';'
+   51 |  end
+      |  ^~~
+%Error: Cannot continue

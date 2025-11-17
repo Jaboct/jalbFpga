@@ -40,6 +40,22 @@ the IDE Layout file for jalbModCore.
 
 
 
+	building
+2 build types
+real
+sim
+
+what to call them?
+
+
+
+
+
+
+
+
+
+
 
 
 

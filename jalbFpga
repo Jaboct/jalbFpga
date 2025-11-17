@@ -12,15 +12,17 @@ Button:
 0	1	C:\Users\jacob\workspace\jHigh\testEnv/modCore lay\jHigh_jalbSvg
 #1	1	mingw32-make -C /home/jadeb/workspace/jHigh\jalbSvg\ CompType=win
 #1	1	mingw32-make -C /home/jadeb/workspace/jHigh\jalbSvg\ clean CompType=win
-1	1	make -C /home/jadeb/workspace/jHigh/jalbSvg/
-1	1	make -C /home/jadeb/workspace/jHigh/jalbSvg/ clean
+1	1	/home/jadeb/workspace/Verilog/jalbFpga/scripts/build_soc.sh
+1	1	/home/jadeb/workspace/Verilog/jalbFpga/scripts/clean.sh
 0	1	/home/jadeb/workspace/jHigh\testEnv/modCore lay\jHigh_jalbSvg
 #1	1	/home/jadeb/workspace/jHigh\jalbSvg\soSend.bat
 1	1	/home/jadeb/workspace/jHigh/jalbSvg/soSend.sh
 1	1	/home/jadeb/workspace/jHigh\jalbSvg\compSend.bat
 
 Dir:
-/home/jadeb/workspace/Verilog/jalbFpga/src/
+#/home/jadeb/workspace/Verilog/jalbFpga/src/
+/home/jadeb/workspace/Verilog/jalbFpga/src/soc/
+/home/jadeb/workspace/Verilog/jalbFpga/sim/soc/
 /home/jadeb/workspace/Verilog/jalbFpga/
 
 Text:
@@ -37,7 +39,9 @@ Setter:
 layoutUi	takeTop	loop	setLastStageData
 
 
-
+Run:
+# type 2 is Verilog, i ought to write one that can take strings.
+console	set_consoleParseType	2
 
 
 
