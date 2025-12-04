@@ -2,4 +2,8 @@
 */obj_dir/*
 *~
 
+# I might want to remove this later.
+*.vcd
+
+
 
