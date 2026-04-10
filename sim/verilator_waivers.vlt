@@ -1,0 +1,7 @@
+
+lint_off -rule WIDTH        -file "*/picorv32.v"
+lint_off -rule UNUSED       -file "*/picorv32.v"
+lint_off -rule UNOPTFLAT    -file "*/picorv32.v"
+lint_off -rule PINCONNECTEMPTY -file "*/picorv32.v"
+
+

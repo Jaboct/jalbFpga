@@ -10,7 +10,7 @@ module picorv32_tb;
 	`else
 		$dumpfile("wave_default.vcd");   // the output file
 	`endif
-		$dumpvars(0, testbench); // dump everything in the testbench hierarchy
+		$dumpvars(0, picorv32_tb); // dump everything in the picorv32_tb hierarchy
 	end
 
 /*
@@ -29,27 +29,35 @@ module picorv32_tb;
 	wire trap;
 
 
+
 	// for picorv32 the memory bus MUST be set up.
 	// these are "simple stubs" for now.
 
 	wire		mem_valid;
 	wire		mem_instr;
+
 	`ifdef TEST_NOP
 		reg		mem_ready = 1'b0;
 	`else
 		wire		mem_ready = 1'b0;
 	`endif
 
+
 	wire [31:0]	mem_addr;
 	wire [31:0]	mem_wdata;
 	wire [3:0]	mem_wstrb;
-//	wire [31:0]	mem_rdata;
-	reg [31:0]	mem_rdata;
 
+	// NOP wants a reg instead of wire because i go onto feed data into it.
+	`ifdef TEST_NOP
+		reg [31:0]	mem_rdata;
+	`else
+		wire [31:0]	mem_rdata;
+	`endif
 
 
 	`ifdef TEST_NOP
 	// Combinational fake memory: always ready, always return NOP on reads.
+	// so this loop runs non-stop, it everytime we are avaiable to write data, we do so.
 	always @* begin
 		mem_ready = 1'b1;           // Always ready to answer
 		if (mem_valid && mem_wstrb == 4'b0000) begin
@@ -61,6 +69,7 @@ module picorv32_tb;
 		end
 	end
 	`endif
+
 
 	// CPU instance
 	picorv32 #(
@@ -102,12 +111,8 @@ endmodule
 
 
 /*
-TODO
-
-write down what parts of the memory bus are necessary to get picorv up and running.
-
-
-instantialising picorv, what is up with ENABLE_MUL and stuff like that.
+instantialising picorv:
+what is up with ENABLE_MUL and stuff like that.
 so my implemntation disables muliplication, division, IRQ? counters???
 */
 

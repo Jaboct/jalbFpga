@@ -4,9 +4,8 @@
 # this is for testbenches, so i should probly rename it
 
 # SOC
-../src/soc/picorv32_silent.v
-../src/soc/picorv32_system.v
-../src/soc/simple_ram.v
+../src/soc/picorv32.v
+../sim/soc/picorv32_tb.v
 
 
 

@@ -10,8 +10,6 @@ jalbFpga [jalb modCore IDE]
 
 Button:
 0	1	C:\Users\jacob\workspace\jHigh\testEnv/modCore lay\jHigh_jalbSvg
-#1	1	mingw32-make -C /home/jadeb/workspace/jHigh\jalbSvg\ CompType=win
-#1	1	mingw32-make -C /home/jadeb/workspace/jHigh\jalbSvg\ clean CompType=win
 #1	1	/home/jadeb/workspace/Verilog/jalbFpga/scripts/build_soc.sh
 1	1	make -C /home/jadeb/workspace/Verilog/jalbFpga/scripts/
 1	1	/home/jadeb/workspace/Verilog/jalbFpga/scripts/clean.sh
@@ -29,6 +27,8 @@ Dir:
 
 Text:
 /home/jadeb/workspace/Verilog/jalbFpga/jalbFpga
+/home/jadeb/workspace/Verilog/jalbFpga/scripts/makefile
+/home/jadeb/workspace/Verilog/jalbFpga/src/soc/picorv32_system.v
 
 
 

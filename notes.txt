@@ -1,4 +1,12 @@
 
+	Overview
+This document is for clean notes on this project.
+I have live notes in the:
+ /FPGA_CPU/notes/verilog_v2.txt
+
+
+
+
 	Scripts
 (2025-11-15 11:48:33)
 
