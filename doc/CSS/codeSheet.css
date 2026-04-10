@@ -1,0 +1,132 @@
+
+
+@import "https://fonts.googleapis.com";
+@import "https://fonts.gstatic.com";
+@import "https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap";
+
+
+.tab {
+	margin-left: 40px;
+}
+
+p {
+	background-color: #F5F5F5;
+}
+
+.myParagraph {
+	background-color: #F5F5F5;
+}
+
+.whiteSection {
+	background-color: #ffffff;
+}
+
+.codeBox {
+	display: block;
+/**	display:inline-block;*/
+	unicode-bidi: embed;
+/**	font-family: monospace;*/
+	font-family: Ubuntu Mono, monospace;
+/**
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 26.4px;
+*/
+	margin-left: 2ex;
+	margin-right: 2ex;
+	background-color: #e6e6e6;
+	white-space: pre;	/** This allows for spaces to act like spaces, and new lines to act like newlines. */
+}
+
+.codeBlock {
+	display: block;
+/**	display:inline-block;*/
+	unicode-bidi: embed;
+/**	font-family: monospace;*/
+	font-family: Ubuntu Mono, monospace;
+/**
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 700;
+	line-height: 26.4px;
+*/
+	margin-left: 2ex;
+	margin-right: 2ex;
+	background-color: #e6e6e6;
+	white-space: pre;	/** This allows for spaces to act like spaces, and new lines to act like newlines. */
+}
+
+.subtleLink:link {
+	color:purple;
+	text-decoration:none;
+}
+
+.subtleLink:hover{
+	color:blue;
+}
+
+.subtleLink:visited{
+	color:maroon;
+}
+
+.subFunct {
+/**	display:inline-block;*/
+/**	display: inline*/
+/**  text-indent: 5em each-line; */
+	margin-top: 0;
+	margin-left: 4em;
+/**	background-color: inherit;	*/
+}
+
+/** Headers */
+
+.myHeader {
+	background-color: #F5F5F5;
+
+	text-indent: 2em;
+
+	font-size: 24px;
+	font-weight: bold;
+}
+
+/* Should i just call this h1 and override the default shit?*/
+.jalb_h1 {
+	background-color: #F5F5F5;
+
+	text-indent: 2em;
+
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.jalb_h4 {
+	background-color: #F5F5F5;
+
+	text-indent: 2em;
+
+	font-size: 18px;
+	font-weight: bold;
+}
+
+div, ul, li {
+	background-color: inherit;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

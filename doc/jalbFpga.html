@@ -1,0 +1,299 @@
+<html>
+
+<head>
+  <title>jalbFpga</title>
+  <link rel="stylesheet" href="./CSS/codeSheet.css">
+</head>
+
+<body>
+
+<div class="myParagraph">
+<h1>Verilog FPGA Soft CPU</h1>
+<br>
+<br>
+
+<b>This File</b><br>
+<a href="#overview">Overview</a><br>
+<a href="#makefile">Makefile</a><br>
+<a href="#ram">RAM</a><br>
+<a href="#simulation">Simulation</a><br>
+
+<br>
+<br>
+
+<b>Other Files</b>
+<a href="./FPGA_Project.html">Entire Project</a><br>
+
+<a href="./Hardware_SlowRoll.html">Hardware SlowRoll</a><br>
+<a href="./SPICE_notes.html">SPICE notes</a><br>
+
+<a href="./notes/clean.html">Clean</a><br>
+
+<br>
+</div>
+
+<br>
+<br>
+
+<div class="myParagraph">
+<b>Overview</b><br>
+<br>
+So I want to "slowRoll" my tech stack.<br>
+Start with the simplest bits, make testbenches, run sims, know what outputs to expect.<br>
+Each step will be called a "landmark"<br>
+<br>
+
+<div class="codeBlock"><u>IDE</u>
+~/programs/modCore$ ./modCore.exe lay/veri/jalbFpga
+
+this is my only lay/veri/ file right now.
+It opens the:
+~/workspace/Verilog/jalbFPGA/
+
+
+<u>Building</u>
+ctrl-1 to build, it runs:
+make -C ~/workspace/Verilog/jalbFpga/scripts/
+
+which makes the <a href="#makefile">makefile</a>
+~/workspace/Verilog/jalbFpga/scripts/makefile
+
+this builds to:
+~/workspace/Verilog/jalbFpga/scripts/obj_dir/
+
+
+<u>Running</u>
+in /obj_dir/ right now I make two exes
+
+At the top of the _tb, it defined what "dumpfile" gets used.
+
+
+<u>View Output</u>
+run:
+ gtkwave wave_default.vcd
+or whatever filename is defined in the "dumpfile" command.
+</div>
+
+
+<br>
+</div>
+
+<br>
+<br>
+
+<div class="myParagraph" id="makefile">
+<b>Makefile</b><br>
+<div class="codeBlock">How to makefiles work for Verilator?
+
+--top-module
+believe is like the main() function
+ right now i use: picorv32_tb
+
+--build -o
+defines the name of the exe
+
+-f
+defines a file that contains a list of other files or command.
+
+-D define preprocessor(?) varaibles
+
+
+Right now when compiling i use Verilator, because it uses C++ to produce binaries I can run and simulate on my PC.
+I believe when I want to acutally compiled to FPGA binaries, I want to use something like <u>Yosys</u>
+Maybe It has a good debug output to help me fix compiling errors? TODO look into this.
+</div>
+<br>
+
+</div>
+
+<br>
+<br>
+
+
+<div class="myParagraph">
+<b>File Directories</b><br>
+<br>
+<u>~/workspace/Verilog/jalbFPGA/</u><br>
+<br>
+
+<div class="codeBlock"><b>Files</b>
+build/		-	- empty
+scripts/	-	- a bunch of scripts
+sim/		-	- im not sure, used for building and test bench files?
+  soc/
+    picorv32_tb.v	- simple testbench for LM:00 (land mark)
+  soc_files.f	-	- a list of files to be built, this gets used by the makefile.
+  soc_files_00.f	- for landmark:00
+  verilator_waivers.vlt	- used to suppress warnings from the picorv32.v, but my verilator is too old to use.
+src/		-	- for actual sources files, not testbenches?
+  soc/
+    picorv32.v	-	- file from github
+    picorv32_silent.v	- wrapper of picorv32.v to suppress warnings.
+    picorv32_system.v	- instantiates all the CPU elements
+    simple_ram.v	- ram module
+    cpu_top.v	-	- not created yet, will be the top level element
+jalbFpga	-	- modCore Layout file
+notes.txt	-	- notes file
+</div>
+<br>
+</div>
+
+<br>
+<br>
+
+<div class="myParagraph">
+<b>Variables</b><br>
+<div class="codeBlock">mem_addr seems to be the PC while instructions are being carried out, but i believe it gets swapped to other ptrs when i am reading or writing to/from ram.
+TOP/picorv32_tb:mem_addr[31:0]
+</div>
+<br>
+
+<b>Notes</b><br>
+<div class="codeBlock">There must be an internal PC, right, where is that?
+
+what is "dut"
+</div>
+</div>
+
+<br>
+<br>
+
+<div class="myParagraph">
+<b>Land Marks</b><br>
+<br>
+<div class="codeBlock"><b>00</b>:
+Right now i generate 2 exe's.
+/scripts/obj_dir/
+
+<u>sim_default</u> -> wave_default.vcd
+ does nothing, simply instantiates then ends.
+ waveform - mem_addr is 0 the entire time
+
+<u>sim_nop</u> -> wave_nop.vcd
+ instantiates, then feeds the processor a bunch of NOP (no opperation) instructions, so we can watch the PC (program counter) iterate through the instructions.
+ waveform:
+mem_addr iterates up by 4 every 30ns starting at 95 ns.
+mem_valid is oscillating, 
+
+gtkwave wave_default.vcd
+
+Ok, so for the bootup of the CPU Core:
+clk has a period of 10ns.
+mem_instr goes high when its done initing?
+
+
+<b>PROOF</b>
+How do i prove that they do what i expect them to do?
+
+rn i have /scripts/full_test.sh which does a diff.
+
+
+<b>01</b>:
+
+
+</div>
+<br>
+
+<br>
+</div>
+
+<br>
+<br>
+
+<div class="myParagraph">
+<b>PicoRV-32</b><br>
+Notes about PicoRV-32 specifically.<br>
+<br>
+<div class="codeBlock">Memory:
+<a href="https://github.com/YosysHQ/picorv32?tab=readme-ov-file#picorv32-native-memory-interface">github</a>
+mem_valid - when high, that means the user can read/write from/to the core.
+mem_ready - then the user sets this to high, (while mem_valid is high) data gets sent to the core (if appropriate) and it hands control back to the core.
+mem_instr - if the core is trying to get instructions, this is high.
+
+mem_addr address being accessed
+mem_wdata data being written
+mem_wstrb byte write enables, zero = read, other = write
+mem_rdata data returned to cpu
+</div>
+
+<br>
+</div>
+
+<br>
+<br>
+
+<div class="myParagraph" id="ram">
+<b>simple_ram.v</b><br>
+<div class="codeBlock"><u>Bit vs Byte vs Word and Indexing</u>
+so in verilog it says
+ wire[31:0]
+this is 32 bits
+
+when in GTKwave it says
+ mem_addr = 0x0000_0004
+this is in bytes, byte 4 of the instruction set / ram (instruction set is stored in ram?)
+
+when in simple_ram.v it says
+ parameter WORDS = 1024
+this means 1024 * 32 = 32 kbits
+or
+1024 * 4 = 4 kByes
+
+</div>
+
+<br>
+</div>
+
+<br>
+<br>
+
+<div class="myParagraph">
+<b>Terms</b><br>
+<div class="codeBlock">PC - program counter - tracks what instruction to execute next?
+IR - instruction register (or CIR for current) is the actual instruction currently being decoded or executed.
+</div>
+
+<br>
+<br>
+
+
+<div class="myParagraph">
+<b>Other</b><br>
+<div class="codeBlock">Spice + Verilog intermingling.
+I would like my SPICE to be able to interact with verilog,
+</div>
+
+<br>
+</div>
+
+<br>
+<br>
+
+<div class="myParagraph" id="simulation">
+<b>Simulation</b><br>
+I use Verilator to sim Verilog.<br>
+<br>
+<u>C Simulation</u><br>
+So simulate C on the CPU Core in Verilator,
+ (idk how this may work on the real device, maybe cache all the compiled binaries in the Verilog code?)<br>
+in simple_ram.v, therere is an "initial being" that reads from a .hex file and gets loaded into ram as the instruction set.<br> 
+<br>
+
+C Compiling:<br>
+https://riscv-programming.org/ale-manual/book/ch02-03-compiling-c-to-risc-v-assembly.html<br>
+I havent looked at this yet, but i might want it later<br>
+<br>
+</div>
+
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>
+
+</body>
+
+</html>
