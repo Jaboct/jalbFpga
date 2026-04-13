@@ -22,7 +22,11 @@ module simple_ram #(
 	reg [31:0] mem [0:WORDS-1];
 
 
+	initial begin
+		$readmemh("firmware_words.hex", mem);
+	end
 
+/*
 	// For simulations: preload program (one 32-bit hex per line)
 	initial begin
 		if ($test$plusargs("PRELOAD")) begin
@@ -30,7 +34,7 @@ module simple_ram #(
 			$readmemh("program.hex", mem);
 		end
 	end
-
+*/
 
 	// Address bits [31:2] = word index (word-aligned)
 	// grabs 0xXXXX_XXXX_XXXX_XX00

@@ -6,7 +6,9 @@ VERILATOR = verilator
 
 .DEFAULT_GOAL := all
 
-all: build-real
+all: build-tb-00
+
+# build-real
 
 #build-default build-nop
 
@@ -26,11 +28,18 @@ build-nop:
 		-f ../sim/soc_files_00.f
 
 
+build-tb-00:
+	$(VERILATOR) $(VFLAGS) --binary \
+		-Wno-PINMISSING -Wno-fatal -Wno-DECLFILENAME \
+		--top-module tb_picorv32_system \
+		--build -o sim_real \
+		-f ../sim/soc_files.f
+
 build-real:
 	$(VERILATOR) $(VFLAGS) --binary \
 		-Wno-PINMISSING -Wno-fatal -Wno-DECLFILENAME \
 		--top-module picorv32_system \
-		--build -o sim_nop \
+		--build -o sim_real \
 		-f ../sim/soc_files.f
 
 #		-f ../sim/verilator_waivers.vlt
