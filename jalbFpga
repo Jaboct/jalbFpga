@@ -18,15 +18,19 @@ Button:
 1	1	/home/jadeb/workspace/jHigh/jalbSvg/soSend.sh
 1	1	/home/jadeb/workspace/jHigh\jalbSvg\compSend.bat
 
+# TODO, add make and send for my C program.
+
 Dir:
 #/home/jadeb/workspace/Verilog/jalbFpga/src/
 /home/jadeb/workspace/Verilog/jalbFpga/src/soc/
 /home/jadeb/workspace/Verilog/jalbFpga/sim/soc/
 /home/jadeb/workspace/Verilog/jalbFpga/scripts/
 /home/jadeb/workspace/Verilog/jalbFpga/
+/home/jadeb/workspace/Verilog/C_Simple/
 
 Text:
 /home/jadeb/workspace/Verilog/jalbFpga/jalbFpga
+/home/jadeb/workspace/Verilog/C_Simple/main.c
 /home/jadeb/workspace/Verilog/jalbFpga/scripts/makefile
 /home/jadeb/workspace/Verilog/jalbFpga/src/soc/picorv32_system.v
 

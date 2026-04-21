@@ -3,8 +3,8 @@ module picorv32_system (
 	input wire	clk,
 	input wire	resetn,
 
-	input  wire [15:0] gpio_in,
-	output wire [15:0] gpio_out
+	input  wire [32:0] gpio_in,
+	output reg [32:0] gpio_out
 );
 
 	// PicoRV32 interface wires
@@ -56,14 +56,26 @@ module picorv32_system (
 	// i need uart out to usb?
 
 
-/* read from the CPU out to the modules port
+/* read from the CPU out to the modules port */
+
 	always @(posedge clk) begin
 		if (!resetn)
+//			gpio_out <= 16'b0;
 			gpio_out <= 32'b0;
 		else if (gpio_out_sel && |mem_wstrb)
+//			gpio_out <= mem_wdata[15:0];
 			gpio_out <= mem_wdata;
 	end
+
+
+/*
+	always @(posedge clk) begin
+		if (!resetn)
+			mem_ready <= 1'b0;
+			if ( mem_valid ) begin
+				rdata <= mem[word_addr
 */
+
 
 
 	wire [31:0]	ram_rdata;
@@ -79,7 +91,12 @@ module picorv32_system (
 		ram_ready
 	);
 
-
+always @(posedge clk) begin
+    if (mem_valid && mem_ready && |mem_wstrb) begin
+        $display("WRITE addr=0x%08x data=0x%08x",
+                 mem_addr, mem_wdata);
+    end
+end
 
 	assign mem_ready =
 	        ram_ready ||
@@ -96,9 +113,6 @@ module picorv32_system (
 		gpio_in_sel	? gpio_in   :
 		gpio_out_sel	? gpio_out  :
 		32'b0;
-
-
-
 
 
 endmodule

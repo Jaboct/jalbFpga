@@ -35,11 +35,15 @@ build-tb-00:
 		--build -o sim_real \
 		-f ../sim/soc_files.f
 
-build-real:
+# rename to Vtb_picorv32_system
+
+
+
+build-system:
 	$(VERILATOR) $(VFLAGS) --binary \
 		-Wno-PINMISSING -Wno-fatal -Wno-DECLFILENAME \
 		--top-module picorv32_system \
-		--build -o sim_real \
+		--build -o sim_syste, \
 		-f ../sim/soc_files.f
 
 #		-f ../sim/verilator_waivers.vlt

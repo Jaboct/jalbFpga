@@ -18,8 +18,28 @@ module tb_picorv32_system;
 	// 1/48e+06 = 20.833e-09
 	initial begin
 		clk = 1'b0;
-		forever 
-	end;
+		forever #20.833 clk = ~clk;
+	end
 
+	initial begin
+		gpio_in = 32'b0;
+		resetn = 1'b0;
 
+		$dumpfile("../vcd/soc.vcd");
+		$dumpvars(0, tb_picorv32_system);
+
+		// hold reset low to sim the board startup
+		#100;
+		resetn = 1'b1;
+
+		// set runtime, long enough to sim the program
+		#5000;
+
+		$display("gpio_out = 0x%08x", gpio_out);
+		$finish;
+	end
 endmodule
+
+
+
+
