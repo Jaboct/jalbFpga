@@ -1,9 +1,12 @@
 
-*/obj_dir/*
 *~
+*/obj_dir/*
+sim/*/out/*
+*/elf
 
-# I might want to remove this later.
-*.vcd
+
+# I might want to re-add this later.
+#*.vcd
 
 
 

@@ -6,12 +6,26 @@ VERILATOR = verilator
 
 .DEFAULT_GOAL := all
 
-
-all: build-tb-00
+all: build-00
+#all: build-tb-00
 
 # build-real
 
 #build-default build-nop
+
+### TODO, run the makefiles in each child directory.
+# have runetime commands where i can list specific ones i want to make, like "01" or "01 02 05", or like "all".
+
+# this should pass down the VFLAGS and other vars above.
+#proof00:
+#	$(MAKE) -C sim/00
+
+build-00:
+	$(VERILATOR) $(VFLAGS) --binary \
+		-Wno-PINMISSING -Wno-fatal -Wno-DECLFILENAME \
+		--top-module picorv32_tb \
+		--build -o sim_default \
+		-f sim/00/files.f
 
 
 build-default:
@@ -19,7 +33,7 @@ build-default:
 		-Wno-PINMISSING -Wno-fatal -Wno-DECLFILENAME \
 		--top-module picorv32_tb \
 		--build -o sim_default \
-		-f ../sim/soc_file_00s.f
+		-f ../sim/soc_files_00.f
 
 build-nop:
 	$(VERILATOR) $(VFLAGS) --binary \

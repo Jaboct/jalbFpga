@@ -118,7 +118,12 @@ Maybe It has a good debug output to help me fix compiling errors? TODO look into
 
 <div class="codeBlock"><b>Files</b>
 build/		-	- empty
-scripts/	-	- a bunch of scripts
+scripts/	-	- a bunch of scripts, i think a lot of the sub folders belong in build?
+  CPU_programs/	-	- compiled C binary programs, 1 word per line, to be loaded in verilator sim and ran on the CPU.
+  proof/	-	- TODO, rn its just 2 old .vcd files
+  vcd/	-	-	- where my output wavefiles go
+  obj_dir/	-	- a bunch of intermediaries made by verilator, does this belong in build?
+  exes/	-	-	- TODO, lets compile my exes to here?
 sim/		-	- im not sure, used for building and test bench files?
   soc/
     picorv32_tb.v	- simple testbench for LM:00 (land mark)

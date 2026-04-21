@@ -1,0 +1,10 @@
+
+# why do i want to have all of these versions?
+As i worked on this project, i learned a lot about how CPUs work, and taking it incrementally helped me learn that.
+So if someone else wants to learn all the lessons I did, they can iterate through these versions, and look at how each code change, causes an output change.
+
+00 : CPU on its own
+01 : CPU with a NOP (no operation) program on repeat, can watch the PC (program counter?) iterate upwards.
+02 : RAM module that can load simple C programs.
+
+

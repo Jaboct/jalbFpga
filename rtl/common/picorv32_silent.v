@@ -6,7 +6,7 @@
 /* verilator lint_off PINCONNECTEMPTY */
 /* verilator lint_off BLKSEQ */
 
-`include "../src/soc/picorv32.v"
+`include "picorv32.v"
 
 /* verilator lint_on WIDTH */
 /* verilator lint_on UNUSED */
